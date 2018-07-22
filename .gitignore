@@ -97,3 +97,5 @@ ENV/
 
 # mypy
 .mypy_cache/
+stravamaps/access_token
+stravamaps/secret
