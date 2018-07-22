@@ -21,3 +21,20 @@ ax[0].plot(distance.data, altitude.data, 'k')  # elevation profile
 ax[1].plot(x, y, 'k')  # route overview
 ax[1].set_aspect('equal')
 plt.show()
+
+
+# Elevation heatmap
+fig, ax = plt.subplots()
+
+points = np.array([x, y]).T.reshape(-1, 1, 2)
+segments = np.concatenate([points[:-1], points[1:]], axis=1)
+
+lc = LineCollection(segments, cmap=plt.get_cmap('hot'),
+    norm=plt.Normalize(z.min(), z.max()))
+lc.set_array(z)
+lc.set_linewidth(3)
+
+ax.add_collection(lc)
+ax.autoscale_view()
+ax.set_aspect('equal')
+plt.show()
